@@ -27,7 +27,7 @@ fun String.decodeBase64() = String(Base64.decode(this, Base64.DEFAULT))
 
 fun String.encodeURL(): String = Uri.encode(this)
 
-// DO NOT use java.net.URLDecoder since do not follow RFC3986
+// DO NOT use java.net.URLDecoder since it do not follow RFC3986
 fun String.decodeURL(): String = Uri.decode(this)
 
 fun String.toJSONArray() = JSONArray().apply {
@@ -53,8 +53,8 @@ fun String.doTarnhelm(): Triple<CharSequence, Boolean, List<String>> {
                 targetRules.add("[${R.string.rulesRedirectsTitle.getString()}]${rule.description.replace("\n", "↵")}")
                 val notification = NotificationCompat.Builder(App.context, "234")
                     .setContentTitle(R.string.process_result_processing.getString())
-                    //.setContentText(methodResult)
                     .setSmallIcon(R.drawable.ic_icon)
+                    .setColor(App.context.getColor(R.color.ic_launcher_background))
                     .setShowWhen(false)
                     .setOngoing(true)
                     .setTimeoutAfter(10000)
@@ -162,8 +162,9 @@ fun CharSequence.doTarnhelms(join: Boolean = false, callback: (success: Boolean,
                         .setContentTitle(R.string.process_result_success.getString())
                         .setContentText(targetRules.toFlowString())
                         .setSmallIcon(R.drawable.ic_icon)
+                        .setColor(App.context.getColor(R.color.ic_launcher_background))
                         .setShowWhen(false)
-                        .setTimeoutAfter(500)
+                        .setTimeoutAfter(1000)
                         .build()
                     App.notificationManager.notify(234, notification)
                 }
@@ -176,6 +177,7 @@ fun CharSequence.doTarnhelms(join: Boolean = false, callback: (success: Boolean,
                 .setContentTitle(R.string.process_result_failed.getString())
                 .setContentText(throwable.localizedMessage)
                 .setSmallIcon(R.drawable.ic_icon)
+                .setColor(App.context.getColor(R.color.ic_launcher_background))
                 .setShowWhen(false)
                 .setTimeoutAfter(1000)
                 .build()

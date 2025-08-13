@@ -29,3 +29,13 @@
 -assumenosideeffects class cn.ac.lz233.tarnhelm.util.LogUtil {
  public static void _d*(...);
 }
+
+-keep class cn.ac.lz233.tarnhelm.service.** {
+ *;
+}
+
+-keep class cn.ac.lz233.tarnhelm.extension.api.** {
+ *;
+}
+
+-dontwarn android.app.AppOpsManager$OnOpNotedListener
