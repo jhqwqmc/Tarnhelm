@@ -52,8 +52,6 @@ object Android {
             val setClipMethod = clipboardServiceClazz.declaredMethods.first { it.name == "setPrimaryClip" }
             setClipMethod.hookBeforeMethod { param ->
                 if (!Config.sp.getBoolean("rewriteClipboard", true)) return@hookBeforeMethod
-                LogUtil.xp("setPrimaryClip")
-
                 runCatching {
                     val data = param.args[0] as ClipData? ?: return@hookBeforeMethod
                     if (data.itemCount == 0) return@hookBeforeMethod
